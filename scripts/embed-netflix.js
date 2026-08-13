@@ -8,7 +8,7 @@ import {
   EMBEDDING_MODEL,
 } from "../lib/qdrant.js";
 
-const CSV_PATH = "data/netflix_titles.csv";
+const CSV_PATH = "data/coffee.csv";
 const BATCH_SIZE = 100;
 
 function rowToText(row) {
