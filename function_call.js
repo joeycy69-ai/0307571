@@ -1,14 +1,19 @@
 import { client, DEFAULT_MODEL } from "./lib/openai.js";
 import { getWeatherTool, getWeather } from "./tools/weather.js";
+import { calculateTool, calculate } from "./tools/calculator.js";
 import { spinner } from "./utils/spinner.js";
 
 const AVAILABLE_TOOLS = {
   get_weather: getWeather,
+  calculate: calculate,
 };
 
-const tools = [getWeatherTool];
+const tools = [
+  getWeatherTool,
+  calculateTool,
+];
 
-const history = [{ role: "user", content: "請問台北現在天氣如何？" }];
+const history = [{ role: "user", content: "10 + 5 * 2 " }];
 
 const askingSpinner = spinner("思考中...").start();
 
