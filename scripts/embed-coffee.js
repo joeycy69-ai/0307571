@@ -47,7 +47,7 @@ async function main() {
   console.log(`讀到 ${rows.length} 筆資料`);
 
   await recreateCollection();
-  console.log(`已建立 collection: ${NETFLIX_COLLECTION}`);
+  console.log(`已建立 collection: ${COFFEE_COLLECTION}`);
 
   let processed = 0;
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
