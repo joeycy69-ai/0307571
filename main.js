@@ -15,7 +15,7 @@ try {
     }
 
     const spin = spinner("搜尋中...").start();
-    const results = await searchCoffee(query, 5);
+    const results = await searchCoffee(query, 1);
     spin.stop();
 
     for (const [i, r] of results.entries()) {
