@@ -5,7 +5,7 @@ import { spinner } from "./utils/spinner.js";
 try {
   while (true) {
     const query = (
-      await input({ message: "請輸入要搜尋的影片內容：" })
+      await input({ message: "請輸入要搜尋的咖啡內容：" })
     ).trim();
 
     if (query === "") continue;
@@ -19,10 +19,10 @@ try {
     spin.stop();
 
     for (const [i, r] of results.entries()) {
-      console.log(`\n${i + 1}. ${r.title} (${r.type}, ${r.release_year})`);
-      console.log(`   分數：${r.score.toFixed(3)}`);
-      console.log(`   分類：${r.listed_in}`);
-      console.log(`   描述：${r.description}`);
+      console.log(`\n${i + 1}. ${r.Coffee_Drink} (${r.type}, ${r.Main_Ingredients})`);
+      console.log(`   口味：${r.Flavor_Profile}`);
+      //console.log(`   分類：${r.listed_in}`);
+      console.log(`   描述：${r.Description}`);
     }
     console.log();
   }
