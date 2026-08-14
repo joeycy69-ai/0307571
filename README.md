@@ -1,4 +1,3 @@
-# AI Agent 實作工作坊 v5（JavaScript 版）
 
 作業一的對話紀錄如下：
 
