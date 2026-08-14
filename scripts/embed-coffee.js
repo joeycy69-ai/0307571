@@ -3,7 +3,7 @@ import { parse } from "csv-parse/sync";
 import { client } from "../lib/openai.js";
 import {
   qdrant,
-  NETFLIX_COLLECTION,
+  COFFEE_COLLECTION,
   EMBEDDING_DIM,
   EMBEDDING_MODEL,
 } from "../lib/qdrant.js";
@@ -13,23 +13,22 @@ const BATCH_SIZE = 100;
 
 function rowToText(row) {
   return [
-    row.Coffee_Drink,
-    row.Main_Ingredients,
-    row.Flavor_Profile,
-    row.Description,
-    row.Best_For,
-    row.Source,
+    `Coffee Drink: ${row.Coffee_Drink}`,
+    `Main Ingredients: ${row.Main_Ingredients}`,
+    `Flavor Profile: ${row.Flavor_Profile}`,
+    `Description: ${row.Description}`,
+    `Best For: ${row.Best_For}`,
   ]
     .filter(Boolean)
     .join(" | ");
 }
 
 async function recreateCollection() {
-  const exists = await qdrant.collectionExists(NETFLIX_COLLECTION);
+  const exists = await qdrant.collectionExists(COFFEE_COLLECTION);
   if (exists.exists) {
-    await qdrant.deleteCollection(NETFLIX_COLLECTION);
+    await qdrant.deleteCollection(COFFEE_COLLECTION);
   }
-  await qdrant.createCollection(NETFLIX_COLLECTION, {
+  await qdrant.createCollection(COFFEE_COLLECTION, {
     vectors: { size: EMBEDDING_DIM, distance: "Cosine" },
   });
 }
@@ -70,7 +69,7 @@ async function main() {
       },
     }));
 
-    await qdrant.upsert(NETFLIX_COLLECTION, { wait: true, points });
+    await qdrant.upsert(COFFEE_COLLECTION, { wait: true, points });
     processed += batch.length;
     console.log(`進度：${processed} / ${rows.length}`);
   }

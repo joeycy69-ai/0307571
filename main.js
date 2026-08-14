@@ -1,5 +1,5 @@
 import { input } from "@inquirer/prompts";
-import { searchNetflix } from "./lib/qdrant.js";
+import { searchCoffee } from "./lib/qdrant.js";
 import { spinner } from "./utils/spinner.js";
 
 try {
@@ -15,14 +15,16 @@ try {
     }
 
     const spin = spinner("搜尋中...").start();
-    const results = await searchNetflix(query, 5);
+    const results = await searchCoffee(query, 5);
     spin.stop();
 
     for (const [i, r] of results.entries()) {
-      console.log(`\n${i + 1}. ${r.Coffee_Drink} (${r.type}, ${r.Main_Ingredients})`);
-      console.log(`   口味：${r.Flavor_Profile}`);
-      //console.log(`   分類：${r.listed_in}`);
-      console.log(`   描述：${r.Description}`);
+      console.log(`\n${i + 1}. ${r.Coffee_Drink}`);
+      console.log(` 相似度分數：${r.score}`);
+      console.log(` 主要材料：${r.Main_Ingredients}`);
+      console.log(` 口味：${r.Flavor_Profile}`);
+      console.log(` 適合：${r.Best_For}`);
+      console.log(` 描述：${r.Description}`);
     }
     console.log();
   }
